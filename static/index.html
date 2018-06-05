@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <title>Erics Sida</title>
+    <script type="text/javascript">
+      var colors= ["black","green","red","blue","purple"];
+
+      function randomInt(max){
+        return Math.floor(Math.random() * max)
+      }
+      function dobutton(){
+        var color = colors[randomInt(colors.length)];
+        document.getElementById("pang").style.color = color;
+        console.log("knapp");
+      }
+      function docesar(){
+        var text=document.getElementById("playn").value;
+        document.getElementById("cipher").innerHTML = text.split("").map(cesar).join("");
+      }
+      function cesar(c){
+        var code=c.charCodeAt(0);
+        var key=parseInt(document.getElementById("key").value);
+        if(code <97 || code >122){
+          return c;
+        }
+
+        code=code+key;
+        if(code < 97){
+          code=code+26;
+        }
+        if(code >122){
+          code=code-26;
+        }
+        console.log(key, code);
+        return String.fromCharCode(code);
+      }
+    </script>
+  </head>
+  <body>
+    <div class="center">
+      <h1 onclick="dobutton()" id="pang">Caesarskiffer</h1>
+
+      <label>
+        text
+        <input type="text" name="" value="" id="playn" />
+      </label>
+      <label>nyckel
+        <input id="key" type="number" name="" value="0">
+      </label>
+      <button type="button" name="button" onclick="docesar()">konvertera</button>
+      <p id="cipher" ></p>
+    </div>
+  </body>
+</html>
