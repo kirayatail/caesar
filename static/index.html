@@ -13,7 +13,7 @@
       function dobutton(){
         var color = colors[randomInt(colors.length)];
         document.getElementById("pang").style.color = color;
-        console.log("knapp");
+        
       }
       function docesar(){
         var text=document.getElementById("playn").value;
@@ -22,18 +22,18 @@
       function cesar(c){
         var code=c.charCodeAt(0);
         var key=parseInt(document.getElementById("key").value);
-        if(code <97 || code >122){
+        if(code <32 || code >126){
           return c;
         }
 
         code=code+key;
-        if(code < 97){
-          code=code+26;
+        while(code < 32){
+          code=code+94;
         }
-        if(code >122){
-          code=code-26;
+        while(code >126){
+          code=code-94;
         }
-        console.log(key, code);
+
         return String.fromCharCode(code);
       }
     </script>
@@ -47,7 +47,7 @@
         <input type="text" name="" value="" id="playn" />
       </label>
       <label>nyckel
-        <input id="key" type="number" name="" value="0">
+        <input id="key" type="number" name="" value="0" oninput="docesar()">
       </label>
       <button type="button" name="button" onclick="docesar()">konvertera</button>
       <p id="cipher" ></p>
